@@ -4,6 +4,8 @@
 
 #ifndef LINETABLE1_3_LINKQUEUE_H
 #define LINETABLE1_3_LINKQUEUE_H
+#include <iostream>
+using namespace std;
 
 template  <class T>
 class linkQueue {
@@ -20,7 +22,6 @@ private:
         node():next(nullptr){}
         ~node(){};
     };
-    
     node *front, *rear;
     
 public:
@@ -30,9 +31,21 @@ public:
     void enQueue(const T &x);
     T dequeue();
     T getHead() const;
+    int size();
 };
 
-
+template <class T>
+int linkQueue<T>:: size()
+{
+    node *tmp=front;
+    int size=0;
+    while (tmp!=nullptr)
+    {
+        tmp=tmp->next;
+        size+=1;
+    }
+    return size;
+}
 template <class T>
 linkQueue<T>::linkQueue() {
     front = rear = nullptr;
